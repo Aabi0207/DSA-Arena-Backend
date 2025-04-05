@@ -52,7 +52,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     portfolio = models.URLField(blank=True, null=True)
 
     score = models.IntegerField(default=0)
-    rank = models.CharField(max_length=50, default="JADHAV", blank=True, null=True)
+    rank = models.CharField(max_length=50, default="Chulbul Pandey", blank=True, null=True)
 
     privilege = models.CharField(
         max_length=50,

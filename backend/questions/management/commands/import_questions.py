@@ -35,7 +35,7 @@ class Command(BaseCommand):
                 topic_name = row['Topic'].strip()
                 question_text = row['Problem Name'].strip()
                 problem_link = row['Problem Link'].strip()
-                # solution_link = row['Solution Link'].strip()
+                solution_link = row['Solution Link'].strip()
                 difficulty_str = row['Difficulty'].strip()
 
                 # Map difficulty from TSV to DIFFICULTY_CHOICES values
@@ -54,7 +54,7 @@ class Command(BaseCommand):
                         topic=topic,
                         question=question_text,
                         link=problem_link,
-                        # solution=solution_link,
+                        solution=solution_link,
                         difficulty=difficulty,  # Use the mapped difficulty
                         platform="leetcode"     # Set platform to lowercase "leetcode"
                     )

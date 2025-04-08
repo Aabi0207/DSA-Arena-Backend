@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import DSASheet, Topic, Question, UserQuestionStatus, UserSheetProgress, UserNote
+from .models import DSASheet, Topic, Question, UserQuestionStatus, UserSheetProgress, UserNote, MarkdownNote
 
 @admin.register(DSASheet)
 class DSASheetAdmin(admin.ModelAdmin):
@@ -30,9 +30,19 @@ class UserSheetProgressAdmin(admin.ModelAdmin):
     list_filter = ('sheet',)
     search_fields = ('user__email', 'sheet__name')
 
-# ✅ NEW: Register UserNote Model
 @admin.register(UserNote)
 class UserNoteAdmin(admin.ModelAdmin):
     list_display = ('user', 'question', 'content', 'created_at')
     list_filter = ('question__topic__sheet',)
     search_fields = ('user__email', 'question__question', 'content')
+
+@admin.register(MarkdownNote)
+class MarkdownNoteAdmin(admin.ModelAdmin):
+    list_display = ('user', 'question', 'content_preview')
+    list_filter = ('question__topic__sheet', 'question__topic')
+    search_fields = ('user__username', 'question__question')
+    list_select_related = ('user', 'question')
+    
+    def content_preview(self, obj):
+        return obj.content[:50] + '...' if len(obj.content) > 50 else obj.content
+    content_preview.short_description = 'Content Preview'

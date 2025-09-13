@@ -119,10 +119,18 @@ WSGI_APPLICATION = "backend.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env("DBNAME"),         # Your database name, e.g., dsa-arena
+        "USER": env("DBUSER"),         # Your DB username
+        "PASSWORD": env("DBPASS"),     # Your DB password
+        "HOST": env("DBHOST"),         # PostgreSQL server hostname
+        "PORT": env.int("DBPORT", default=5432),  # Default PostgreSQL port
+        "OPTIONS": {
+            "sslmode": "require",      # Enforce SSL connection as required by Azure PostgreSQL
+        },
     }
 }
+
 
 
 # Password validation

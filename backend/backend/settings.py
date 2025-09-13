@@ -47,7 +47,7 @@ DEBUG = False
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 42  # 6 weeks
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  
 
-ALLOWED_HOSTS = ['yourusername.pythonanywhere.com']
+ALLOWED_HOSTS = ['']
 
 
 # Application definition
